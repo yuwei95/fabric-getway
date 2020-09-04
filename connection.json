@@ -1,0 +1,85 @@
+{
+  "name": "basic-network",
+  "version": "1.0.0",
+  "client": {
+    "organization": "org1",
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        },
+        "orderer": "300"
+      }
+    }
+  },
+  "channels": {
+    "mychannel": {
+      "orderers": [
+        "orderer1-org0"
+      ],
+      "peers": {
+        "peer1-org1": {
+          "endorsingPeer": true,
+          "chaincodeQuery": true,
+          "ledgerQuery": true,
+          "eventSource": true
+        }
+      }
+    }
+  },
+  "organizations": {
+    "org1": {
+      "mspid": "org1MSP",
+      "peers": [
+        "peer1-org1"
+      ],
+      "certificateAuthorities": [
+        "rca-org1"
+      ],
+      "adminPrivateKeyPEM": {
+        "path": "E:\\workspace\\demohyperledger\\org1\\admin\\msp\\keystore\\8bbdee14baafe56ff39d722f62e06ee119dcf355fd7b57eacc5d4880fe43d69f_sk"
+      },
+      "signedCertPEM": {
+        "path": "E:\\workspace\\demohyperledger\\org1\\admin\\msp\\signcerts\\cert.pem"
+      }
+    }
+  },
+  "orderers": {
+    "orderer1-org0": {
+      "url": "grpcs://192.168.163.128:7050",
+      "mspid": "org0MSP",
+      "grpcOptions": {
+        "ssl-target-name-override": "orderer1-org0",
+        "hostnameOverride": "orderer1-org0"
+      },
+      "tlsCACerts": {
+        "path": "E:\\workspace\\demohyperledger\\org0\\orderer\\tls-msp\\tlscacerts\\tls-0-0-0-0-7052.pem"
+      },
+      "adminPrivateKeyPEM": {
+        "path": "E:\\workspace\\demohyperledger\\org0\\admin\\msp\\keystore\\56982606498f4b290dd278bb6e2307ea8323dbb8714b98e4438c54de6732a599_sk"
+      },
+      "signedCertPEM": {
+        "path": "E:\\workspace\\demohyperledger\\org0\\admin\\msp\\signcerts\\cert.pem"
+      }
+    }
+  },
+  "peers": {
+    "peer1-org1": {
+      "url": "grpcs://192.168.163.128:7051",
+      "grpcOptions": {
+        "ssl-target-name-override": "peer1-org1",
+        "hostnameOverride": "peer1-org1",
+        "request-timeout": 120001
+      },
+      "tlsCACerts": {
+        "path": "E:\\workspace\\demohyperledger\\org1\\peer1\\tls-msp\\tlscacerts\\tls-0-0-0-0-7052.pem"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "rca-org1": {
+      "url": "http://192.168.163.128:7054",
+      "caName": "rca-org1"
+    }
+  }
+}
